@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.code.edu.mapper.EduMenuMapper">
+  <resultMap id="BaseResultMap" type="com.code.edu.model.EduMenu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="last_modified_user_id" jdbcType="BIGINT" property="lastModifiedUserId" />
+    <result column="oid" jdbcType="BIGINT" property="oid" />
+  </resultMap>
+  <resultMap id="BaseResultDtoMap" type="com.code.edu.dto.EduMenuDto" extends="BaseResultMap">
+  </resultMap>
+</mapper>
