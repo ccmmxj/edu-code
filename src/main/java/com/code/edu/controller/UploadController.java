@@ -23,7 +23,7 @@ public class UploadController {
 
     @PostMapping("upload/{type}")
     @ResponseBody
-    public Result upload(MultipartFile file, @PathVariable String type, HttpServletResponse response){
+    public Result upload(MultipartFile file, @PathVariable String type){
         try {
             String result = FileUpload.uploadFile(file,Context.uploadAddr() + type);
             return ResultFactory.newInstaceSuccessResult("上传成功",200L,Context.FILE_HOST + type + "/" + result);
