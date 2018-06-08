@@ -16,36 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("manage/card")
+@RequestMapping("card")
 public class CardController {
     private final static Logger logger = LoggerFactory.getLogger(CardController.class);
 
     @Autowired
     private EduCardService eduCardService;
 
-    @PostMapping("del")
-    @ResponseBody
-    public Result<EduCard> del(Long id){
-        EduCard card = eduCardService.delCard(id,Context.DEFAULT_COMPANY_ID);
-        if (card != null) {
-            return ResultFactory.newInstaceSuccessResult("删除成功", 200L, card);
-        }
-        return ResultFactory.newInstaceSuccessResult("删除失败", 200L, card);
-    }
-
-    @PostMapping("saveOrUpdate")
-    @ResponseBody
-    public Result<EduCard> saveOrUpdate(EduCard eduCard){
-        int count = eduCardService.saveOrUpdate(eduCard);
-        String message = "保存";
-        if(eduCard.getId() != null){
-            message = "编辑";
-        }
-        if (count > 0 ) {
-            return ResultFactory.newInstaceSuccessResult(message + "成功", 200L, eduCard);
-        }
-        return ResultFactory.newInstaceSuccessResult(message + "失败", 200L, eduCard);
-    }
     @PostMapping("list")
     @ResponseBody
     public Result<List<EduCard>> list(){

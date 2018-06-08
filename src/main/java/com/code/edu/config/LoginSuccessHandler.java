@@ -29,13 +29,18 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDto user = LoginUtil.getLoginUser();
         HttpSession session = request.getSession(false);
-        session.setAttribute(user.getEduUser().getUserName(),"ok");
-        System.out.println(session.getId());
-        LOGGER.info(MessageFormat.format("用户{0}登录成功...",user.getEduUser().getEmpName()));
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
         ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println(session.getId());
         user.setSessionId(session.getId());
+        if(user == null){
+            LOGGER.info("注消成功...");
+            String result = objectMapper.writeValueAsString(ResultFactory.newInstaceSuccessResult("注消成功",200L,user));
+            printWriter.print(result);
+        }
+        session.setAttribute(user.getEduUser().getUserName(),"ok");
+        LOGGER.info(MessageFormat.format("用户{0}登录成功...",user.getEduUser().getEmpName()));
         String result = objectMapper.writeValueAsString(ResultFactory.newInstaceSuccessResult("登陆成功",200L,user));
         printWriter.print(result);
     }

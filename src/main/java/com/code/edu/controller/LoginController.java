@@ -1,7 +1,9 @@
 package com.code.edu.controller;
 
 import com.code.edu.client.TestClient;
+import com.code.edu.dto.UserDto;
 import com.code.edu.model.EduCard;
+import com.code.edu.utils.LoginUtil;
 import com.code.edu.utils.Result;
 import com.code.edu.utils.ResultFactory;
 import org.slf4j.Logger;
@@ -23,7 +25,11 @@ public class LoginController {
     @GetMapping("doLogin")
     @ResponseBody
     public Result<String> doLogin() {
-        return ResultFactory.newInstaceSuccessResult("test",200L,"test");
+        UserDto user = LoginUtil.getLoginUser();
+        if(user == null){
+            return ResultFactory.newInstaceSuccessResult("请先登录",403L,null);
+        }
+        return ResultFactory.newInstaceSuccessResult("登陆成功",200L,user);
     }
     @GetMapping("manage/eduLearnAllClient")
     @ResponseBody

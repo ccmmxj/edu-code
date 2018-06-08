@@ -1,6 +1,5 @@
 package com.code.edu.config;
 
-import com.code.edu.dto.EduSecurityDto;
 import com.code.edu.mapper.EduPersiomMapper;
 import com.code.edu.mapper.EduSecurityMapper;
 import com.code.edu.model.EduPersiom;
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 import java.util.List;
 import java.util.stream.Collectors;
