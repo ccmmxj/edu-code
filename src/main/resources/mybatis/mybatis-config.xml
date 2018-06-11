@@ -5,10 +5,10 @@
 	<settings>
 		<setting name="lazyLoadingEnabled" value="false"></setting>
 	</settings>
-	<plugins>
-		<plugin interceptor="com.github.pagehelper.PageInterceptor">
-			<!--分页参数合理化 -->
-			<property name="reasonable" value="true" />
-		</plugin>
-	</plugins>
+	<!--<plugins>-->
+		<!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+			<!--&lt;!&ndash;分页参数合理化 &ndash;&gt;-->
+			<!--<property name="reasonable" value="true" />-->
+		<!--</plugin>-->
+	<!--</plugins>-->
 </configuration>

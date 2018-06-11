@@ -20,6 +20,16 @@ public class EduUser extends BaseModel<Long> {
 
     private Date gmtModified;
 
+    private Long companyId;
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
     public String getNickName() {
         return nickName;
     }

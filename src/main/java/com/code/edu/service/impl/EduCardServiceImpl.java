@@ -1,9 +1,15 @@
 package com.code.edu.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.code.edu.dto.TableData;
+import com.code.edu.dto.WhereDto;
 import com.code.edu.mapper.EduCardMapper;
 import com.code.edu.model.EduCard;
 import com.code.edu.service.EduCardService;
+import com.code.edu.utils.TableDataFactory;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +69,43 @@ public class EduCardServiceImpl implements EduCardService {
 
     @Override
     public List<EduCard> findCardAll(Long companyId) {
-        Example example = Example.builder(EduCard.class).where(Sqls.custom().andEqualTo("companyId",companyId).andEqualTo("isDeleted",0)).build();
+        Example example = Example.builder(EduCard.class).where(WhereDto.defaultWhere(companyId)).build();
         logger.info("findCardAll =====> companyId:{}", companyId);
         return eduCardMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<EduCard> findCardByTypeAndComId(Long companyId, Byte type) {
+        Example example = Example.builder(EduCard.class).where(WhereDto.defaultWhere(companyId).andEqualTo("type",type)).build();
+        List<EduCard> cards = eduCardMapper.selectByExample(example);
+        return cards;
+    }
+
+    @Override
+    public TableData<EduCard> findCardTable(TableData<EduCard> tableData, Long companyId) {
+        PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
+        Sqls sqls = WhereDto.defaultWhere(companyId);
+        Example.Builder builder = Example.builder(EduCard.class).where(sqls);
+        if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
+            if("desc".equals(tableData.getSortOrder())){
+                builder = builder.orderByDesc(tableData.getSortName());
+            }else{
+                builder = builder.orderByAsc(tableData.getSortName());
+            }
+        }
+        Example example = builder.build();
+//        List<EduCard> cards = findCardAll(companyId);
+        List<EduCard> cards = eduCardMapper.selectByExample(example);
+        PageInfo<EduCard> page= new PageInfo<>(cards);
+//        tableData.setTotal((int)page.getTotal());
+//        tableData.setRows(cards);
+        return TableDataFactory.newInstaceSuccessResult(tableData,page,cards);
+    }
+
+    @Override
+    public EduCard findOne(Long id, Long companyId) {
+        Example example = Example.builder(EduCard.class).where(WhereDto.defaultWhere(companyId).andEqualTo("id",id)).build();
+        logger.info("findOne =====> id:{},companyId:{}", id,companyId);
+        return eduCardMapper.selectOneByExample(example);
     }
 }

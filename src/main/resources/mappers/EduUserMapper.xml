@@ -7,6 +7,7 @@
     <result column="emp_name" jdbcType="VARCHAR" property="empName" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
     <result column="salt" jdbcType="VARCHAR" property="salt" />
     <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />

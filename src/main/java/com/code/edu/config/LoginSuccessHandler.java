@@ -1,6 +1,7 @@
 package com.code.edu.config;
 
 import com.code.edu.dto.UserDto;
+import com.code.edu.interceptor.CDInterceptor;
 import com.code.edu.utils.LoginUtil;
 import com.code.edu.utils.ResultFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,14 +23,14 @@ import java.text.MessageFormat;
  * @author wangruyu
  * @since 2017/3/15-09:57
  */
-@Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSuccessHandler.class);
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDto user = LoginUtil.getLoginUser();
         HttpSession session = request.getSession(false);
-        response.setContentType("text/html;charset=UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
+        CDInterceptor.CDResponse(response);
         PrintWriter printWriter = response.getWriter();
         ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(session.getId());

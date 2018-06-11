@@ -6,21 +6,6 @@ spring:
     http:
         encoding:
             charset: utf-8
-#    datasource:
-#        type: com.alibaba.druid.pool.DruidDataSource
-#        filters: stat
-#        maxActive: 20
-#        initialSize: 1
-#        maxWait: 60000
-#        minIdle: 1
-#        timeBetweenEvictionRunsMillis: 60000
-#        minEvictableIdleTimeMillis: 300000
-#        validationQuery: select 1
-#        testWhileIdle: true
-#        testOnBorrow: false
-#        testOnReturn: false
-#        poolPreparedStatements: true
-#        maxOpenPreparedStatements: 20
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql

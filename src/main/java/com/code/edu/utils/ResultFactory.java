@@ -4,18 +4,18 @@ public final class ResultFactory {
     private ResultFactory() {
         super();
     }
-    public static <T> Result newInstaceSuccessResult(String message,Long code,T result){
-        return newInstaceResult("提示",message,true,code,result);
+    public static <T> Result<T> newInstaceSuccessResult(String message,Long code,T result){
+        return newInstaceDefaultResult(message,code,result,true);
     }
-    public static <T> Result newInstaceFailResult(String message,Long code,T result){
-        return newInstaceResult("提示",message,false,code,result);
+    public static <T> Result<T> newInstaceFailResult(String message,Long code,T result){
+        return newInstaceDefaultResult(message,code,result,false);
     }
 
-    public static <T> Result newInstaceDefaultResult(String message,Long code,T result,boolean success){
+    public static <T> Result<T> newInstaceDefaultResult(String message,Long code,T result,boolean success){
         return newInstaceResult("提示",message,success,code,result);
     }
 
-    public static <T> Result newInstaceResult(String title,String message,boolean success,Long code,T result){
+    public static <T> Result<T> newInstaceResult(String title,String message,boolean success,Long code,T result){
         Result res = new Result();
         res.setCode(code);
         res.setMessage(message);

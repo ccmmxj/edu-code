@@ -8,6 +8,8 @@ public class EduCard extends BaseModel<Long> {
 
     private String title;
 
+    private String content;
+
     private Byte type;
 
     private Long companyId;
@@ -82,5 +84,13 @@ public class EduCard extends BaseModel<Long> {
 
     public void setAudioUrl(String audioUrl) {
         this.audioUrl = audioUrl == null ? null : audioUrl.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

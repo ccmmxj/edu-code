@@ -16,7 +16,10 @@ public class CDInterceptor {
     @Before(value = "execution(* com.code.edu.controller.*.*(..))")
     public void before(){
         HttpServletResponse response =  ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+        CDResponse(response);
+    }
 
+    public static void CDResponse(HttpServletResponse response ){
         response.setContentType("text/html;charset=UTF-8");
 
         response.setHeader("Access-Control-Allow-Origin", "*");

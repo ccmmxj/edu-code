@@ -24,10 +24,10 @@ public class LoginController {
     private TestClient testClient;
     @GetMapping("doLogin")
     @ResponseBody
-    public Result<String> doLogin() {
+    public Result<UserDto> doLogin() {
         UserDto user = LoginUtil.getLoginUser();
         if(user == null){
-            return ResultFactory.newInstaceSuccessResult("请先登录",403L,null);
+            return ResultFactory.newInstaceFailResult("请先登录",403L,null);
         }
         return ResultFactory.newInstaceSuccessResult("登陆成功",200L,user);
     }
