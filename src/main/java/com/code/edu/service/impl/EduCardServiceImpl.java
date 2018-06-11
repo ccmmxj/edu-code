@@ -85,7 +85,7 @@ public class EduCardServiceImpl implements EduCardService {
     public TableData<EduCard> findCardTable(TableData<EduCard> tableData, Long companyId) {
         PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
         Sqls sqls = WhereDto.defaultWhere(companyId);
-        Example.Builder builder = Example.builder(EduCard.class).where(sqls);
+        Example.Builder builder = Example.builder(EduCard.class).where(sqls).orderByDesc("gmtModified");
         if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
             if("desc".equals(tableData.getSortOrder())){
                 builder = builder.orderByDesc(tableData.getSortName());

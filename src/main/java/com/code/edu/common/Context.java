@@ -10,5 +10,5 @@ public interface Context {
         }
     }
 //    Long DEFAULT_COMPANY_ID = 1L;
-    String FILE_HOST = "http://127.0.0.1/upload/";
+    String FILE_HOST = "http://100.64.29.249/upload/";
 }
