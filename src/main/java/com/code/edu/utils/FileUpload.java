@@ -11,15 +11,18 @@ public final class FileUpload {
     }
     public static String uploadFile(MultipartFile file ,String path) throws IOException{
         String name = file.getOriginalFilename();
-//        String suffixName = name.substring(name.lastIndexOf("."));
+        String suffixName = name.substring(name.lastIndexOf("."));
+        String fileName = name.substring(0,name.lastIndexOf("."));
         File tempFilePath = new File(path);
         if(!tempFilePath.exists()){
             tempFilePath.mkdirs();
         }
         File tempFile = new File(tempFilePath,name);
-        if(!tempFile.exists()){
-            file.transferTo(tempFile);
+        if(tempFile.exists()){
+            name = fileName + System.currentTimeMillis() + suffixName;
+            tempFile = new File(tempFilePath,name);
         }
+        file.transferTo(tempFile);
         return name;
     }
 }
