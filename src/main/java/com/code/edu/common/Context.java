@@ -6,9 +6,9 @@ public interface Context {
         if(os.toLowerCase().startsWith("win")){
             return "D:/javaSoft/nginx-1.12.2/nginx-1.12.2/html/upload/";
         }else{
-            return "/home/upload/";
+            return "/urs/local/nginx/html/upload/";
         }
     }
 //    Long DEFAULT_COMPANY_ID = 1L;
-    String FILE_HOST = "http://100.64.29.249/upload/";
+    String FILE_HOST = "http://220.190.177.127/upload/";
 }
