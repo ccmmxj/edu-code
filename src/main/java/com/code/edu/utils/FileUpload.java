@@ -22,6 +22,18 @@ public final class FileUpload {
             name = fileName + System.currentTimeMillis() + suffixName;
             tempFile = new File(tempFilePath,name);
         }
+        //是否可执行
+        if(!tempFile.canExecute()){
+            tempFile.setExecutable(true);
+        }
+        //是否可写
+        if(!tempFile.canWrite()){
+            tempFile.setWritable(true);
+        }
+        //是否可读
+        if(!tempFile.canRead()){
+            tempFile.setReadable(true);
+        }
         file.transferTo(tempFile);
         return name;
     }
