@@ -17,11 +17,9 @@ public final class FileUpload {
         if(!tempFilePath.exists()){
             tempFilePath.mkdirs();
         }
-        name = new String(name.getBytes("utf-8"),"utf-8");
         File tempFile = new File(tempFilePath,name);
         if(tempFile.exists()){
             name = fileName + System.currentTimeMillis() + suffixName;
-            name = new String(name.getBytes("utf-8"),"utf-8");
             tempFile = new File(tempFilePath,name);
         }
         file.transferTo(tempFile);
