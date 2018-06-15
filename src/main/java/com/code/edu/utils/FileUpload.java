@@ -24,15 +24,15 @@ public final class FileUpload {
         }
         //是否可执行
         if(!tempFile.canExecute()){
-            tempFile.setExecutable(true);
+            tempFile.setExecutable(true,false);
         }
         //是否可写
         if(!tempFile.canWrite()){
-            tempFile.setWritable(true);
+            tempFile.setWritable(true,false);
         }
         //是否可读
         if(!tempFile.canRead()){
-            tempFile.setReadable(true);
+            tempFile.setReadable(true,false);
         }
         file.transferTo(tempFile);
         return name;
