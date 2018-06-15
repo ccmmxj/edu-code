@@ -1,5 +1,5 @@
 server:
-    port: 8080
+    port: 8001
 eureka:
     port: 8888
     host: 220.190.179.149
