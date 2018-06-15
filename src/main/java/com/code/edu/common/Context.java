@@ -11,7 +11,7 @@ public interface Context {
         if(os.toLowerCase().startsWith("win")){
             return "D:/javaSoft/nginx-1.12.2/nginx-1.12.2/html/upload/";
         }else{
-            return "/urs/local/nginx/html/upload/";
+            return "/usr/local/nginx/html/upload/";
         }
     }
 //    Long DEFAULT_COMPANY_ID = 1L;
