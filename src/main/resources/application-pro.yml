@@ -39,6 +39,8 @@ logging:
 https:
   port: 8443
   ssl:
-    key-store: classpath:springboot.jks
-    key-store-password: secret
-    key-password: password
+    key-store: classpath:keystore.p12
+    key-store-password: czd102930
+    key-password: czd102930
+    key-store-type: PKCS12
+    key-alias: hpgary
