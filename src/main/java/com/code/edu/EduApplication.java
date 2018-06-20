@@ -38,6 +38,8 @@ public class EduApplication extends SpringBootServletInitializer{
 	@Value("${https.ssl.key-password}")
 	private String key_password;
 
+	@Value("${https.ssl.store-name}")
+	private String store_name;
 	@Bean
 	public EmbeddedServletContainerFactory servletContainer() {
 		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
@@ -48,7 +50,7 @@ public class EduApplication extends SpringBootServletInitializer{
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 		Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
 		try {
-			File keystore = new ClassPathResource("springboot.jks").getFile();
+			File keystore = new ClassPathResource(store_name).getFile();
             /*File truststore = new ClassPathResource("sample.jks").getFile();*/
 			connector.setScheme("https");
 			connector.setSecure(true);

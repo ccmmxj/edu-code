@@ -37,6 +37,7 @@ logging:
 https:
   port: 8443
   ssl:
-    key-store: classpath:springboot.jks
+    key-store: classpath:${https.ssl.store-name}
     key-store-password: secret
     key-password: password
+    store-name: springboot.jks
