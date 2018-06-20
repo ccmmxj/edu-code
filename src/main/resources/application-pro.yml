@@ -42,4 +42,4 @@ https:
     key-store: classpath:linux.jks
     key-store-password: czd102930
     key-password: czd102930
-    store-name: classpath:linux.jks
+    store-name: linux.jks
