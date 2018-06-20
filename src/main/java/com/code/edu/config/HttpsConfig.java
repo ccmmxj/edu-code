@@ -45,7 +45,7 @@ public class HttpsConfig {
         connector.setSecure(true);
         connector.setPort(port);
         protocol.setSSLEnabled(true);
-        if(!"pro".equals(active)){
+        if("pro".equals(active)){
             store_name = "/root/.jenkins/workspace/edu-code/target/edu-0.0.1-SNAPSHOT/WEB-INF/classes/" + store_name;
         }
         try {
