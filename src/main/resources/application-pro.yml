@@ -39,7 +39,7 @@ logging:
 https:
   port: 8443
   ssl:
-    key-store: classpath:linux.properties
+    key-store: linux.jks
     key-store-password: czd102930
     key-password: czd102930
-    store-name: linux.properties
+    store-name: linux.jks
