@@ -52,7 +52,7 @@ public class EduApplication extends SpringBootServletInitializer{
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 		Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
 		try {
-			File keystore = new ClassPathResource(store_name).getFile();
+			File keystore = new ClassPathResource("springboot.jks").getFile();
             /*File truststore = new ClassPathResource("sample.jks").getFile();*/
 			connector.setScheme("https");
 			connector.setSecure(true);
