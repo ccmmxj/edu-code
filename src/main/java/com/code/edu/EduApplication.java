@@ -59,8 +59,8 @@ public class EduApplication extends SpringBootServletInitializer{
 			connector.setPort(port);
 			protocol.setSSLEnabled(true);
 //			protocol.setKeystoreFile(keystore.getAbsolutePath());
-			protocol.setKeystorePass(key_store_password);
-			protocol.setKeyPass(key_password);
+//			protocol.setKeystorePass(key_store_password);
+//			protocol.setKeyPass(key_password);
 			return connector;
 //		}
 //		catch (IOException ex) {
