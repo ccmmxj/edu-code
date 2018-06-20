@@ -35,3 +35,10 @@ logging:
     path: /usr/java/logs
 #    config: classpath:logger/logback-spring.xml
 #logging.file=demo.log
+
+https:
+  port: 8443
+  ssl:
+    key-store: classpath:springboot.jks
+    key-store-password: secret
+    key-password: password
