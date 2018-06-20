@@ -46,16 +46,18 @@ public class HttpsConfig {
         connector.setPort(port);
         protocol.setSSLEnabled(true);
         if(!"pro".equals(active)){
-            try {
-                File keystore = new ClassPathResource(store_name).getFile();
-                protocol.setKeystoreFile(keystore.getAbsolutePath());
-                protocol.setKeystorePass(key_store_password);
-                protocol.setKeyPass(key_password);
-            } catch (IOException ex) {
-                throw new IllegalStateException("can't access keystore: [" + "keystore"
-                        + "] or truststore: [" + "keystore" + "]", ex);
-            }
+            store_name = "/root/.jenkins/workspace/edu-code/target/edu-0.0.1-SNAPSHOT/WEB-INF/classes/" + store_name;
         }
+        try {
+            File keystore = new ClassPathResource(store_name).getFile();
+            protocol.setKeystoreFile(keystore.getAbsolutePath());
+            protocol.setKeystorePass(key_store_password);
+            protocol.setKeyPass(key_password);
+        } catch (IOException ex) {
+            throw new IllegalStateException("can't access keystore: [" + "keystore"
+                    + "] or truststore: [" + "keystore" + "]", ex);
+        }
+//        }
         return connector;
     }
 //    @Bean
