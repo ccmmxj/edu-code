@@ -3,6 +3,7 @@ package com.code.edu;
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.Http11NioProtocol;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
@@ -22,6 +23,7 @@ import java.io.IOException;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableAutoConfiguration
 @MapperScan(basePackages = "com.code.edu.mapper")
 public class EduApplication extends SpringBootServletInitializer{
 
