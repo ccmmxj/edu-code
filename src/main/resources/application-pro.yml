@@ -1,9 +1,9 @@
 server:
     port: 8001
-    ssl:
-        key-store: classpath:${server.ssl.store-name}
-        key-store-password: czd102930
-        store-name: linux.jks
+#    ssl:
+#        key-store: classpath:${server.ssl.store-name}
+#        key-store-password: czd102930
+#        store-name: linux.jks
 eureka:
     port: 8888
     host: 220.190.178.165
@@ -39,14 +39,14 @@ logging:
     path: /usr/java/logs
 #    config: classpath:logger/logback-spring.xml
 #logging.file=demo.log
-
-https:
-  port: 8443
-  ssl:
-    key-store: classpath:${https.ssl.store-name}
-    key-store-password: czd102930
-    key-password: czd102930
-    store-name: linux.jks
-    key-alias: alias
-    key-store-provider: SUN
-    key-store-type: JKS
+#
+#https:
+#  port: 8443
+#  ssl:
+#    key-store: classpath:${https.ssl.store-name}
+#    key-store-password: czd102930
+#    key-password: czd102930
+#    store-name: linux.jks
+#    key-alias: alias
+#    key-store-provider: SUN
+#    key-store-type: JKS
