@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.Sqls;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,11 +40,16 @@ public class EduCardServiceImpl implements EduCardService {
 
     @Override
     public int save(EduCard eduCard) {
+        Date now = new Date();
+        eduCard.setGmtModified(now);
+        eduCard.setGmtCreated(now);
         return eduCardMapper.insertSelective(eduCard);
     }
 
     @Override
     public int update(EduCard eduCard) {
+        Date now = new Date();
+        eduCard.setGmtModified(now);
         return eduCardMapper.updateByPrimaryKeySelective(eduCard);
     }
 
