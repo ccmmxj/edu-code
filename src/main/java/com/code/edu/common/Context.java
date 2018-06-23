@@ -15,5 +15,5 @@ public interface Context {
         }
     }
 //    Long DEFAULT_COMPANY_ID = 1L;
-    String FILE_HOST = "http://220.190.178.165:8081/upload/";
+    String FILE_HOST = "http://www.ccmmxj.club:8081/upload/";
 }
