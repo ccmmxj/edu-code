@@ -12,9 +12,9 @@ eureka:
             defaultZone: http://${eureka.host}:${eureka.port}/eureka/
 spring:
     datasource:
-        url: jdbc:mysql://www.ccmmxj.club:3306/edu?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+        url: jdbc:mysql://edu.ccmmxj.club:3306/edu?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         username: root
-        password: czd102930
+        password: cmx123456
         driver-class-name: com.mysql.jdbc.Driver
 debug: true
 
