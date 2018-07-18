@@ -22,6 +22,16 @@ public class EduCard extends BaseModel<Long> {
 
     private String audioUrl;
 
+    private String videoUrl;
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
