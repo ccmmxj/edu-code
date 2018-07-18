@@ -16,6 +16,10 @@ spring:
         username: root
         password: cmx123456
         driver-class-name: com.mysql.jdbc.Driver
+    http:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 100MB
 debug: true
 
 #logging.level.root: warn
@@ -37,6 +41,7 @@ logging:
             code:
                 edu: INFO
     path: /usr/java/logs
+
 #    config: classpath:logger/logback-spring.xml
 #logging.file=demo.log
 #
