@@ -65,6 +65,7 @@ public class UserServiceImpl implements UserDetailsService {
 //            return User.withUsername(user.getUserName()).password(user.getPassword())
 //                    .roles(roles.stream().map( (value)-> value.getName()).collect(Collectors.toList()).toArray(new String[0]))
 //                    .authorities(permissions.stream().map(value -> value.getName()).collect(Collectors.toList()).toArray(new String[0])).build();
+            logger.info("userDto:==================={}============",userDto);
             return userDto;
         } else {
             throw new UsernameNotFoundException("user: " + username + " do not exist!");
