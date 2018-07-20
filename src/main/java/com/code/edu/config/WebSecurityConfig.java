@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        SecurityContextHolder.getContext().setAuthentication(null);
         LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
         LoginFailedHandler loginFailedHandler = new LoginFailedHandler();
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
@@ -59,9 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler)
                 .failureHandler(loginFailedHandler)
                 .and().logout().deleteCookies("JSESSIONID")
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login").logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll()
+                .logoutUrl("/logout").permitAll()
                 .and().csrf().disable();
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
 //        http.authorizeRequests()
