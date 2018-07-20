@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         UserDto userDto = new UserDto();
         EduUser user = eduUserMapper.selectByUsername(username);
+        logger.info("username:==================={}============",username);
         if (user != null) {
             List<EduPersiom> permissions = eduPersiomMapper.selectByUserId(user.getId());
             List<EduRole> roles = eduRoleMapper.selectByUserId(user.getId());
