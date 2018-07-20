@@ -35,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        SecurityContextHolder.getContext().setAuthentication(null);
         LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
         LoginFailedHandler loginFailedHandler = new LoginFailedHandler();
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
