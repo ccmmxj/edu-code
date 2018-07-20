@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +36,9 @@ public class LoginController {
         }
         return ResultFactory.newInstaceSuccessResult("登陆成功",200L,user);
     }
-    @GetMapping(value="/logout")
+    @PostMapping("logout")
     @ResponseBody
-    public Result<String> logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    public Result<String> logout (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
