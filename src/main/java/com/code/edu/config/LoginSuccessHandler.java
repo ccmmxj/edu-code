@@ -27,7 +27,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDto user = LoginUtil.getLoginUser();
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
 //        response.setContentType("text/html;charset=UTF-8");
         CDInterceptor.CDResponse(response);
         PrintWriter printWriter = response.getWriter();
