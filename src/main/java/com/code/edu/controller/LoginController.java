@@ -9,10 +9,15 @@ import com.code.edu.utils.ResultFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -29,6 +34,16 @@ public class LoginController {
             return ResultFactory.newInstaceFailResult("请先登录",403L,null);
         }
         return ResultFactory.newInstaceSuccessResult("登陆成功",200L,user);
+    }
+    @GetMapping(value="/logout")
+    @ResponseBody
+    public Result<String> logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+            return ResultFactory.newInstaceSuccessResult("退出成功",200L,null);
+        }
+        return ResultFactory.newInstaceFailResult("请先登录",403L,null);
     }
     @GetMapping("manage/eduLearnAllClient")
     @ResponseBody
