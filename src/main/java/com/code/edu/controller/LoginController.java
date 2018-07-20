@@ -36,9 +36,9 @@ public class LoginController {
         }
         return ResultFactory.newInstaceSuccessResult("登陆成功",200L,user);
     }
-    @PostMapping("logout")
+    @PostMapping("doLogout")
     @ResponseBody
-    public Result<String> logout (HttpServletRequest request, HttpServletResponse response) {
+    public Result<String> doLogout (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
