@@ -59,8 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .successHandler(loginSuccessHandler)
                 .failureHandler(loginFailedHandler)
-                .and().logout().deleteCookies("JSESSIONID")
-                .logoutUrl("/logout").permitAll()
+                .and().logout().deleteCookies("JSESSIONID").permitAll()
                 .and().csrf().disable();
 //        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
 //        http.authorizeRequests()
