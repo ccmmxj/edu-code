@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,18 +28,18 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         UserDto user = LoginUtil.getLoginUser();
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
 //        response.setContentType("text/html;charset=UTF-8");
         CDInterceptor.CDResponse(response);
         PrintWriter printWriter = response.getWriter();
         ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println(session.getId());
+        user.setSessionId(session.getId());
         if(user == null){
             LOGGER.info("注消成功...");
             String result = objectMapper.writeValueAsString(ResultFactory.newInstaceSuccessResult("注消成功",200L,user));
             printWriter.print(result);
         }
-        System.out.println(session.getId());
-        user.setSessionId(session.getId());
         session.setAttribute(user.getEduUser().getUserName(),"ok");
         LOGGER.info(MessageFormat.format("用户{0}登录成功...",user.getEduUser().getEmpName()));
         String result = objectMapper.writeValueAsString(ResultFactory.newInstaceSuccessResult("登陆成功",200L,user));

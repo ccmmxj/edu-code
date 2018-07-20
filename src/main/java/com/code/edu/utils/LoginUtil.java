@@ -12,10 +12,11 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @since 2017/3/15-09:58
  */
 public class LoginUtil {
-    private static SecurityContext context = SecurityContextHolder.getContext();
+//    private static SecurityContext context = SecurityContextHolder.getContext();
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginUtil.class);
     public static UserDto getLoginUser() {
         LOGGER.info(Thread.currentThread().getName());
+        SecurityContext context = SecurityContextHolder.getContext();
         if (context == null) {
             return null;
         }

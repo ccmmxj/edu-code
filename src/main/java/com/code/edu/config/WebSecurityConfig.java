@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         LoginSuccessHandler loginSuccessHandler = new LoginSuccessHandler();
         LoginFailedHandler loginFailedHandler = new LoginFailedHandler();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http.sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);
         List<EduSecurity> eduSecuritys = eduSecurityMapper.selectAll();
         eduSecuritys.stream().forEach((value) -> {
