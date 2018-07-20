@@ -1,5 +1,6 @@
 package com.code.edu.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.code.edu.dto.EduMenuDto;
 import com.code.edu.dto.UserDto;
 import com.code.edu.mapper.EduMenuMapper;
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserDetailsService {
 //            return User.withUsername(user.getUserName()).password(user.getPassword())
 //                    .roles(roles.stream().map( (value)-> value.getName()).collect(Collectors.toList()).toArray(new String[0]))
 //                    .authorities(permissions.stream().map(value -> value.getName()).collect(Collectors.toList()).toArray(new String[0])).build();
-            logger.info("userDto:==================={}============",userDto);
+            logger.info("userDto:==================={}============", JSON.toJSONString(userDto));
             return userDto;
         } else {
             throw new UsernameNotFoundException("user: " + username + " do not exist!");
