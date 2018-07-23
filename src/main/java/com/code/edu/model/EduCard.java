@@ -24,14 +24,6 @@ public class EduCard extends BaseModel<Long> {
 
     private String videoUrl;
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -101,6 +93,14 @@ public class EduCard extends BaseModel<Long> {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
     }
 }
