@@ -88,9 +88,12 @@ public class EduCardServiceImpl implements EduCardService {
     }
 
     @Override
-    public TableData<EduCard> findCardTable(TableData<EduCard> tableData, Long companyId) {
+    public TableData<EduCard> findCardTable(TableData<EduCard> tableData, Long companyId,String title) {
         PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
         Sqls sqls = WhereDto.defaultWhere(companyId);
+        if(StringUtils.isNotBlank(title)){
+            sqls.andLike("title","%"+title+"%");
+        }
         Example.Builder builder = Example.builder(EduCard.class).where(sqls).orderByDesc("gmtModified");
         if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
             if("desc".equals(tableData.getSortOrder())){

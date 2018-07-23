@@ -55,9 +55,12 @@ public class JiajuLunboServiceImpl implements JiajuLunboService {
     }
 
     @Override
-    public TableData<JiajuLunbo> findLunboTable(TableData<JiajuLunbo> tableData, Long companyId) {
+    public TableData<JiajuLunbo> findLunboTable(TableData<JiajuLunbo> tableData, Long companyId,String title) {
         PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
         Sqls sqls = WhereDto.defaultWhere(companyId);
+        if(StringUtils.isNotBlank(title)){
+            sqls.andLike("title","%"+title+"%");
+        }
         Example.Builder builder = Example.builder(JiajuLunbo.class).where(sqls).orderByDesc("gmtModified");
         if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
             if("desc".equals(tableData.getSortOrder())){

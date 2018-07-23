@@ -2,28 +2,20 @@ package com.code.edu.model;
 
 import java.util.Date;
 
-public class JiajuLunbo extends BaseModel<Long> {
+public class JiajuWindow extends BaseModel<Long>{
     private Date gmtCreated;
 
     private Date gmtModified;
 
     private Byte isDeleted;
 
-    private String lunboUrl;
+    private String windowUrl;
 
     private String title;
 
     private Long companyId;
 
     private Long oid;
-
-    public Long getOid() {
-        return oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
-    }
 
     public Date getGmtCreated() {
         return gmtCreated;
@@ -49,12 +41,12 @@ public class JiajuLunbo extends BaseModel<Long> {
         this.isDeleted = isDeleted;
     }
 
-    public String getLunboUrl() {
-        return lunboUrl;
+    public String getWindowUrl() {
+        return windowUrl;
     }
 
-    public void setLunboUrl(String lunboUrl) {
-        this.lunboUrl = lunboUrl == null ? null : lunboUrl.trim();
+    public void setWindowUrl(String windowUrl) {
+        this.windowUrl = windowUrl == null ? null : windowUrl.trim();
     }
 
     public String getTitle() {
@@ -71,5 +63,13 @@ public class JiajuLunbo extends BaseModel<Long> {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 }

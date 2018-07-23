@@ -9,6 +9,6 @@ public interface JiajuLunboService extends BaseService<JiajuLunbo,Long> {
     JiajuLunbo delLunbo(Long id, Long companyId);
     List<JiajuLunbo> findLunboAll(Long companyId);
     JiajuLunbo findOne(Long id, Long companyId);
-    TableData<JiajuLunbo> findLunboTable(TableData<JiajuLunbo> tableData, Long companyId);
+    TableData<JiajuLunbo> findLunboTable(TableData<JiajuLunbo> tableData, Long companyId,String title);
     List<JiajuLunbo> findLunboByTypeAndComId(Long companyId, Byte type);
 }

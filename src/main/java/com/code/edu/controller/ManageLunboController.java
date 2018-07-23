@@ -55,8 +55,8 @@ public class ManageLunboController {
 //    }
     @PostMapping("list")
     @ResponseBody
-    public TableData<JiajuLunbo> list(TableData<JiajuLunbo> tableData){
-        return jiajuLunboService.findLunboTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId());
+    public TableData<JiajuLunbo> list(TableData<JiajuLunbo> tableData,String title){
+        return jiajuLunboService.findLunboTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId(),title);
     }
     @PostMapping("detail")
     @ResponseBody

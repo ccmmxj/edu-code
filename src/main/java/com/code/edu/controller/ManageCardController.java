@@ -56,8 +56,8 @@ public class ManageCardController {
 //    }
     @PostMapping("list")
     @ResponseBody
-    public TableData<EduCard> list(TableData<EduCard> tableData){
-        return eduCardService.findCardTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId());
+    public TableData<EduCard> list(TableData<EduCard> tableData, String title){
+        return eduCardService.findCardTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId(),title);
     }
     @PostMapping("detail")
     @ResponseBody
