@@ -18,7 +18,7 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
     http:
       multipart:
-        max-file-size: 10MB
+        max-file-size: 50MB
         max-request-size: 100MB
 debug: true
 
