@@ -33,7 +33,7 @@ public class JiajuWindowServiceImpl implements JiajuWindowService {
         window.setIsDeleted((byte)1);
         window.setCompanyId(companyId);
         logger.info("delWindow after =====> {}", JSON.toJSONString(window));
-        int count = jiajuWindowMapper.updateByPrimaryKeySelective(window);
+        int count = update(window);
         logger.info("delWindow before =====> {}", JSON.toJSONString(window));
         if(count>0) {
             return window;

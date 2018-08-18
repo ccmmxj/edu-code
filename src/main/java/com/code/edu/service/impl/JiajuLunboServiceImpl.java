@@ -32,7 +32,7 @@ public class JiajuLunboServiceImpl implements JiajuLunboService {
         lunbo.setIsDeleted((byte)1);
         lunbo.setCompanyId(companyId);
         logger.info("delLunbo after =====> {}", JSON.toJSONString(lunbo));
-        int count = jiajuLunboMapper.updateByPrimaryKeySelective(lunbo);
+        int count = update(lunbo);
         logger.info("delLunbo before =====> {}", JSON.toJSONString(lunbo));
         if(count>0) {
             return lunbo;

@@ -65,7 +65,7 @@ public class EduCardServiceImpl implements EduCardService {
         card.setIsDeleted((byte)1);
         card.setCompanyId(companyId);
         logger.info("delCard after =====> {}", JSON.toJSONString(card));
-        int count = eduCardMapper.updateByPrimaryKeySelective(card);
+        int count = update(card);
         logger.info("delCard before =====> {}", JSON.toJSONString(card));
         if(count>0) {
             return card;
