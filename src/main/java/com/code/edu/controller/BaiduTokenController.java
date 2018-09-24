@@ -4,10 +4,13 @@ import com.code.edu.utils.Result;
 import com.code.edu.utils.ResultFactory;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,7 +23,8 @@ public class BaiduTokenController {
     private static final String BAIDU_TOKEN_URL = "https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials";
 
 
-    @GetMapping("token")
+    @PostMapping("getToken")
+    @ResponseBody
     public Result<String> getToken() {
         BufferedReader reader = null;
         try {
