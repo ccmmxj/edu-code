@@ -78,7 +78,7 @@ public class EduConfigServiceImpl implements EduConfigService {
         if(StringUtils.isNotBlank(title)){
             sqls.andLike("title","%"+title+"%");
         }
-        sqls.andEqualTo("type",configTypeEnum.name());
+        sqls.andEqualTo("type",configTypeEnum.type());
         Example.Builder builder = Example.builder(EduConfig.class).where(sqls).orderByDesc("gmtModified");
         if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
             if("desc".equals(tableData.getSortOrder())){
