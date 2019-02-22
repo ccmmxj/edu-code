@@ -2,9 +2,7 @@ package com.code.edu.model;
 
 import java.util.Date;
 
-public class EduConfig {
-    private Long id;
-
+public class EduConfig extends BaseModel<Long>{
     private String type;
 
     private String title;
@@ -16,14 +14,6 @@ public class EduConfig {
     private Date gmtCreated;
 
     private Long companyId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;
