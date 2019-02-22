@@ -3,6 +3,7 @@ package com.code.edu.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.code.edu.dto.TableData;
 import com.code.edu.dto.WhereDto;
+import com.code.edu.enums.ConfigTypeEnum;
 import com.code.edu.mapper.EduConfigMapper;
 import com.code.edu.model.EduConfig;
 import com.code.edu.service.EduConfigService;
@@ -71,12 +72,13 @@ public class EduConfigServiceImpl implements EduConfigService {
         return null;
     }
     @Override
-    public TableData<EduConfig> findConfigTable(TableData<EduConfig> tableData, Long companyId, String title) {
+    public TableData<EduConfig> findConfigTable(TableData<EduConfig> tableData, Long companyId, String title, ConfigTypeEnum configTypeEnum) {
         PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
         Sqls sqls = WhereDto.notInIsDeletedWhere(companyId);
         if(StringUtils.isNotBlank(title)){
             sqls.andLike("title","%"+title+"%");
         }
+        sqls.andEqualTo("type",configTypeEnum.name());
         Example.Builder builder = Example.builder(EduConfig.class).where(sqls).orderByDesc("gmtModified");
         if(StringUtils.isNotBlank(tableData.getSortName()) && StringUtils.isNotBlank(tableData.getSortOrder())){
             if("desc".equals(tableData.getSortOrder())){

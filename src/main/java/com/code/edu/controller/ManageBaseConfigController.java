@@ -1,6 +1,7 @@
 package com.code.edu.controller;
 
 import com.code.edu.dto.TableData;
+import com.code.edu.enums.ConfigTypeEnum;
 import com.code.edu.model.EduConfig;
 import com.code.edu.model.EduConfig;
 import com.code.edu.service.EduConfigService;
@@ -53,10 +54,10 @@ public class ManageBaseConfigController {
 //    public Result<List<EduConfig>> list(){
 //        return ResultFactory.newInstaceSuccessResult("获取成功", 200L, eduConfigService.findConfigAll(LoginUtil.getLoginUser().getEduUser().getCompanyId()));
 //    }
-    @PostMapping("list")
+    @PostMapping("card/list")
     @ResponseBody
-    public TableData<EduConfig> list(TableData<EduConfig> tableData, String title){
-        return eduConfigService.findConfigTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId(),title);
+    public TableData<EduConfig> cardList(TableData<EduConfig> tableData, String title){
+        return eduConfigService.findConfigTable(tableData,LoginUtil.getLoginUser().getEduUser().getCompanyId(),title,ConfigTypeEnum.CARD_TYPE);
     }
     @PostMapping("detail")
     @ResponseBody
