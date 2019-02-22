@@ -5,7 +5,6 @@ import com.code.edu.dto.TableData;
 import com.code.edu.dto.WhereDto;
 import com.code.edu.mapper.EduConfigMapper;
 import com.code.edu.model.EduConfig;
-import com.code.edu.model.EduConfig;
 import com.code.edu.service.EduConfigService;
 import com.code.edu.utils.TableDataFactory;
 import com.github.pagehelper.PageHelper;
@@ -62,7 +61,7 @@ public class EduConfigServiceImpl implements EduConfigService {
     public EduConfig delConfig(Long id, Long companyId) {
         EduConfig config = findOne(id);
         if(config == null) return null;
-        Example example = Example.builder(EduConfig.class).where(WhereDto.defaultWhere(companyId).andEqualTo("id",id)).build();
+        Example example = Example.builder(EduConfig.class).where(WhereDto.notInIsDeletedWhere(companyId).andEqualTo("id",id)).build();
 
         logger.info("delConfig =====> {}", JSON.toJSONString(config));
         int count = eduConfigMapper.deleteByExample(example);
@@ -74,7 +73,7 @@ public class EduConfigServiceImpl implements EduConfigService {
     @Override
     public TableData<EduConfig> findConfigTable(TableData<EduConfig> tableData, Long companyId, String title) {
         PageHelper.startPage(tableData.getPageNumber(),tableData.getPageSize());
-        Sqls sqls = WhereDto.defaultWhere(companyId);
+        Sqls sqls = WhereDto.notInIsDeletedWhere(companyId);
         if(StringUtils.isNotBlank(title)){
             sqls.andLike("title","%"+title+"%");
         }
@@ -97,7 +96,7 @@ public class EduConfigServiceImpl implements EduConfigService {
 
     @Override
     public EduConfig findOne(Long id, Long companyId) {
-        Example example = Example.builder(EduConfig.class).where(WhereDto.defaultWhere(companyId).andEqualTo("id",id)).build();
+        Example example = Example.builder(EduConfig.class).where(WhereDto.notInIsDeletedWhere(companyId).andEqualTo("id",id)).build();
         logger.info("findOne =====> id:{},companyId:{}", id,companyId);
         return eduConfigMapper.selectOneByExample(example);
     }
