@@ -102,4 +102,11 @@ public class EduConfigServiceImpl implements EduConfigService {
         logger.info("findOne =====> id:{},companyId:{}", id,companyId);
         return eduConfigMapper.selectOneByExample(example);
     }
+
+    @Override
+    public List<EduConfig> findConfigByTypeAndComId(Long companyId, String type) {
+        Example example = Example.builder(EduConfig.class).where(WhereDto.notInIsDeletedWhere(companyId).andEqualTo("type",type)).build();
+        List<EduConfig> configs = eduConfigMapper.selectByExample(example);
+        return configs;
+    }
 }
