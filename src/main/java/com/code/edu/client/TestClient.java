@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "edu", fallback = TestClientImpl.class,configuration = FeignClientsConfiguration.class)
+//@FeignClient(name = "edu", fallback = TestClientImpl.class,configuration = FeignClientsConfiguration.class)
 public interface TestClient {
     @GetMapping("manage/eduLearnAll")
     List<EduCard> eduLearnAll();
