@@ -13,7 +13,7 @@ import java.util.Enumeration;
 
 @Configuration
 public class FeignClientsConfiguration {
-//    @Bean
+    @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
