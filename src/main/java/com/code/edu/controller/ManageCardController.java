@@ -68,9 +68,8 @@ public class ManageCardController {
 
     @GetMapping("clearResource")
     @ResponseBody
-    public Result<EduCard> clearResource(){
-        eduCardManage.clearResource();
-        return ResultFactory.newInstaceSuccessResult("清除成功", 200L, null);
+    public Result<Integer> clearResource(){
+        return ResultFactory.newInstaceSuccessResult("清除成功", 200L, eduCardManage.clearResource());
     }
 
 }

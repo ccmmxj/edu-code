@@ -16,6 +16,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Component
@@ -25,7 +26,7 @@ public class EduCardManage {
     @Autowired
     private EduCardService eduCardService;
 
-    public void clearResource() {
+    public int clearResource() {
         List<EduCard> cardList = eduCardService.findAll();
         Set<String> resourceSet = cardList.stream()
                 .map(eduCard -> Lists.newArrayList(eduCard.getImgUrl(), eduCard.getAudioUrl()))
@@ -35,6 +36,7 @@ public class EduCardManage {
                 .collect(Collectors.toSet());
         try {
             String uploadDir = Context.uploadAddr();
+            AtomicInteger count = new AtomicInteger(0);
             Files.walkFileTree(Paths.get(uploadDir), new FileVisitor<Path>() {
                 @Override
                 public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
@@ -47,7 +49,8 @@ public class EduCardManage {
                     String filePath = file.toString().replaceAll("\\\\", "/").replace(uploadDir, "");
                     if (!resourceSet.contains(filePath)) {
                         logger.warn("del free resource:{}", file);
-                        Files.delete(file);
+//                        Files.delete(file);
+                        count.getAndIncrement();
                     }
                     return FileVisitResult.CONTINUE;
                 }
@@ -64,9 +67,11 @@ public class EduCardManage {
                     return FileVisitResult.CONTINUE;
                 }
             });
+            return count.get();
         } catch (IOException e) {
             logger.error("clearResource fail.", e);
         }
+        return -1;
     }
 
     public static void main(String[] args) {
