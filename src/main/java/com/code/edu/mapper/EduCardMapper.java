@@ -9,9 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface EduCardMapper extends BaseMapper<EduCard> {
-
-    @Select("select * from edu_card where is_deleted = 0 and company_id = #{companyId}")
-    List<EduCard> selectEnableAll(Long companyId);
     //    int save(EduCard t);
     //    int update(EduCard t);
     //    int saveOrUpdate(EduCard t);

@@ -1,5 +1,6 @@
 package com.code.edu.utils;
 
+import com.code.edu.common.Context;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -36,5 +37,10 @@ public final class FileUpload {
         }
         file.transferTo(tempFile);
         return name;
+    }
+
+    public static boolean exists(String path){
+        path = path.replace(Context.FILE_HOST, Context.uploadAddr());
+        return new File(path).exists();
     }
 }

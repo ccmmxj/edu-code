@@ -117,4 +117,11 @@ public class EduCardServiceImpl implements EduCardService {
         logger.info("findOne =====> id:{},companyId:{}", id,companyId);
         return eduCardMapper.selectOneByExample(example);
     }
+
+    @Override
+    public List<EduCard> findCardByComId(Long companyId) {
+        Example example = Example.builder(EduCard.class).where(WhereDto.defaultWhere(companyId)).build();
+        List<EduCard> cards = eduCardMapper.selectByExample(example);
+        return cards;
+    }
 }
