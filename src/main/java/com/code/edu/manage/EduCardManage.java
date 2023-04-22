@@ -49,7 +49,7 @@ public class EduCardManage {
                     String filePath = file.toString().replaceAll("\\\\", "/").replace(uploadDir, "");
                     if (!resourceSet.contains(filePath)) {
                         logger.warn("del free resource:{}", file);
-//                        Files.delete(file);
+                        Files.delete(file);
                         count.getAndIncrement();
                     }
                     return FileVisitResult.CONTINUE;
