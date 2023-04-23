@@ -24,7 +24,7 @@ public class UploadController {
     @ResponseBody
     public Result upload(MultipartFile file, @PathVariable String type){
         try {
-            String result = FileUpload.uploadFile(file,Context.uploadAddr() + type);
+            String result = FileUpload.uploadFile(file,Context.FILE_DIR + type);
             return ResultFactory.newInstaceSuccessResult("上传成功",200L,Context.FILE_HOST + type + "/" + result);
         } catch (IOException e) {
             e.printStackTrace();

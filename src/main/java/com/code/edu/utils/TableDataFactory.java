@@ -10,15 +10,18 @@ public final class TableDataFactory {
         super();
     }
     public static <T> TableData<T> newInstaceSuccessResult(TableData<T> tableData,PageInfo<T> page,List<T> rows){
-        return newInstaceResult(tableData,page,rows,200L,"获取成功");
+        return newInstaceSuccessResult(tableData, page.getTotal(), rows);
     }
-    public static <T> TableData<T> newInstaceFailResult(TableData<T> tableData,PageInfo<T> page,List<T> rows){
-        return newInstaceResult(tableData,page,rows,500L,"获取失败");
+    public static <T> TableData<T> newInstaceSuccessResult(TableData<T> tableData, long total, List<T> rows){
+        return newInstaceResult(tableData, total, rows,200L,"获取成功");
+    }
+    public static <T> TableData<T> newInstaceFailResult(){
+        return newInstaceResult(null, -1, null,500L,"获取失败");
     }
 
-    public static <T> TableData<T> newInstaceResult(TableData<T> tableData,PageInfo<T> page,List<T> rows,Long code,String msg){
+    public static <T> TableData<T> newInstaceResult(TableData<T> tableData, long total, List<T> rows,Long code,String msg){
         TableData<T> tTableData = tableData.copyTableData();
-        tTableData.setTotal((int)page.getTotal());
+        tTableData.setTotal((int)total);
         tTableData.setRows(rows);
         tTableData.setCode(code);
         tTableData.setMsg(msg);
