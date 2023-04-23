@@ -7,24 +7,20 @@ import com.code.edu.mapper.EduMenuMapper;
 import com.code.edu.mapper.EduPersiomMapper;
 import com.code.edu.mapper.EduRoleMapper;
 import com.code.edu.mapper.EduUserMapper;
-import com.code.edu.model.EduMenu;
 import com.code.edu.model.EduPersiom;
 import com.code.edu.model.EduRole;
 import com.code.edu.model.EduUser;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,12 +44,16 @@ public class UserServiceImpl implements UserDetailsService {
             List<EduPersiom> permissions = eduPersiomMapper.selectByUserId(user.getId());
             List<EduRole> roles = eduRoleMapper.selectByUserId(user.getId());
             List<EduMenuDto> menus = eduMenuMapper.selectByUserId(user.getId());
-            menus.forEach((value)->{
-                value.setChildEduMenu(eduMenuMapper.selectByPid(value.getId()));
-            });
+            if (!CollectionUtils.isEmpty(menus)) {
+                Map<Long, List<EduMenuDto>> menuMap = menus.stream().collect(Collectors.groupingBy(EduMenuDto::getParentId));
+                List<EduMenuDto> mainMenu = menuMap.get(0L);
+                mainMenu.forEach(eduMenuDto -> {
+                    eduMenuDto.setChildEduMenu(menuMap.get(eduMenuDto.getId()));
+                });
+                userDto.setEduMenuList(mainMenu);
+            }
             userDto.setEduUser(user);
             userDto.setEduPersioms(permissions);
-            userDto.setEduMenuList(menus);
             userDto.setEduRoles(roles);
 //            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 //            for (EduPersiom permission : permissions) {
